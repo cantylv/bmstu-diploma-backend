@@ -196,7 +196,7 @@ func (d *Delivery) AuthVk(w http.ResponseWriter, r *http.Request) {
 		silentToken = data["token"].(string)
 	}
 	if uuid == "" || silentToken == "" {
-		d.logger.Error(err.Error(), zap.String(cnst.RequestId, requestId))
+		d.logger.Error("internal error", zap.String(cnst.RequestId, requestId))
 		functions.ErrorResponse(w, errors.New("Missing uuid or token in payload"), http.StatusBadRequest)
 		return
 	}
